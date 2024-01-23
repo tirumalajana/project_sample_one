@@ -17,50 +17,6 @@ class Listviewscreen extends StatefulWidget {
 }
 
 class _ListviewscreenState extends State<Listviewscreen> {
-  List<List<AnswersOptions>> listsData = [
-    [
-      AnswersOptions('Indian Ocean'),
-      AnswersOptions('Arctic Ocean'),
-      AnswersOptions('North Atlantic Ocean, '),
-      AnswersOptions('Pacific Ocean,'),
-      AnswersOptions('others'),
-    ],
-    [
-      AnswersOptions('Narendra Modi'),
-      AnswersOptions('Jawahar Lal Nehru'),
-      AnswersOptions('Gulzarilal Nanda'),
-      AnswersOptions('Lal Bahadur Shastri'),
-      AnswersOptions('others')
-    ],
-    [
-      AnswersOptions('15 August 1947'),
-      AnswersOptions('15 August 1957'),
-      AnswersOptions('15 August 1967'),
-      AnswersOptions('15 August 1937'),
-      AnswersOptions('others')
-    ],
-    [
-      AnswersOptions('10.4 trillion USD'),
-      AnswersOptions('10.3 trillion USD'),
-      AnswersOptions('11.4 trillion USD'),
-      AnswersOptions('11.3 trillion USD'),
-      AnswersOptions('others')
-    ],
-    [
-      AnswersOptions('New Delhi'),
-      AnswersOptions('Hyderabad'),
-      AnswersOptions('Bangalore'),
-      AnswersOptions('Kolkata'),
-      AnswersOptions('others')
-    ],
-  ];
-  final List<String> questions = [
-    "1.What is the name of the largest ocean in the world?",
-    "2.Who is the current Prime Minister of India?",
-    "3.When was India’s independence day?",
-    "4.What is the current GDP of India?",
-    "5.What is the capital of India?",
-  ];
   TextEditingController _answerController = TextEditingController();
 
   @override
@@ -86,18 +42,16 @@ class _ListviewscreenState extends State<Listviewscreen> {
                 dense: true,
                 activeColor: Colors.blue,
                 onChanged: (bool? value) {
-                  
                   setState(() {
-                    
                     widget.listData.forEach((element) {
                       element.isSelected = false;
-
+                      _answerController.text = element.answer;
                     });
+                    final val = widget.listData[index].answer;
+                      _answerController.text = val;
                     widget.listData[index].isSelected = value!;
                   });
-                  
                 },
-                
                 title: Text(widget.listData[index].answer),
               );
             },
@@ -108,8 +62,6 @@ class _ListviewscreenState extends State<Listviewscreen> {
               if (value == false) {
                 return 'Required.';
               }
-
-             
             },
           ),
         ],
